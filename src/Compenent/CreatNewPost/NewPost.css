@@ -1,0 +1,48 @@
+.modal{
+    background-color: rgb(255, 255, 255 ,0.1);
+    color: white;
+    
+}
+
+
+.modal .modal-content{
+    background-color: var(--dark-1);
+}
+
+/* .modal .modal-dialog{
+  max-width: 90%; 
+  width: auto;
+  margin: auto;
+} */
+
+
+.modal .modal-content .modal-body input{
+    background-color: var( --dark-4);
+    outline: none;
+    border: none;
+    padding: 2px;
+    width: 80%;
+    margin: 2px;
+    border-radius: 10px;
+    color: var(--light-2);
+
+}
+
+.modal .modal-content .modal-body input::placeholder
+{
+    color: var(--light-2);
+    box-shadow: 0 0 2px var(--light-2);
+ 
+
+}
+
+
+/* @media (max-width:1400px) {
+  
+        .modal .modal-dialog {
+    
+          max-width: 95%; 
+        }
+      
+      
+} */

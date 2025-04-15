@@ -1,0 +1,46 @@
+
+
+.SigninParent{
+    text-transform: capitalize;
+}
+
+.SigninParent .SigninTitle
+{
+    text-align: center;
+    max-width: fit-content;
+    color: var(--light-1);
+}
+.SigninParent .SigninTitle p{
+    color: var(--light-3);
+    font-weight: bold;
+}
+
+
+.SigninParent .Form form{
+    color: var(--light-1);
+
+}
+.SigninParent .Form form .form-text{
+    color: var(--light-3);
+    margin-top: 20px;
+}
+
+.SigninParent .Form form input{
+    max-width: 100%;
+    background-color: var(--dark-4);
+    outline: none;
+    border: none;
+color: white;
+}
+
+.SigninParent .Form form input:placeholder-shown{
+    color: white;
+}
+
+.SigninParent .Form form button{
+    background-color: var(--primary-600);
+    width: 60%;
+ 
+}
+
+ 
