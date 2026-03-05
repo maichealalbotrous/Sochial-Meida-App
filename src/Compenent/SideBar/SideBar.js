@@ -1,132 +1,94 @@
 import React, { useState } from "react";
 import "./SideBar.css";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import NewPost from "../CreatNewPost/NewPost";
-import { Alert, Button } from "bootstrap";
-import TheAlert from "../TheAlert/TheAlert";
 
 const SideBar = () => {
-const [menuopen,setmenuopen ] = useState(false)
-let navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-const ShowLinks=()=>{
-  setmenuopen(!menuopen);
-}
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
+  const logout = () => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      localStorage.removeItem("Token");
+      localStorage.removeItem("User");
+      navigate("/Login/SignIn");
+    }
+  };
 
-const logout=()=>{
-const token = localStorage.getItem("Token");
-if(token !=null)
-{
-  <TheAlert Title={"logOut Success"}/>
-  localStorage.removeItem("Token");
-  localStorage.removeItem("User");
-  navigate("/Login/SignIn");
-}
-}
   return (
-    <div>
-      <div className="SideIcone">
-       <p className="menuBar" ><img onClick={()=>{ShowLinks()}} className="menu mb-4" src="/icons/icons8-menu-50.png"/></p>
-       </div>
-       <div style={{position:menuopen === true ? "fixed" : "" ,zIndex:menuopen === true ? "100":"" }} className={` ${menuopen === true ? "SideBar clicked":"SideBar"}`}>
-      {menuopen === true ?        <p className="menuBar" ><img onClick={()=>{ShowLinks()}} className="menu mb-4" src="/icons/icons8-menu-50.png"/></p>
-:''}
-      <div className="favIcone">
-       <span><img src="/icons/favicon.ico" /></span> 
-       <h1 className="ms-3">
-       Snapgram
-        </h1>
-        </div>
-      
-
-      <div className="UserSetting mt-4">
-      
-      <div>
-      <div className=" sideBtn">
-          
-            <span>
-              <img className="me-3" style={{ maxWidth:"30px"}} src="/icons/profile-placeholder.svg" />
-            </span>
-            <h3>
-            <NavLink className={menuopen === true? "show":""}>Profile</NavLink>
-          </h3>
-        </div>
-      
-        <div className="sideBtn">
-          
-            <span>
-              <img className="me-3" style={{maxWidth:"35px"}}  src="/icons/home.svg" />
-            </span>
-            <h3>
-           <NavLink className={menuopen === true? "show":""}>Home</NavLink>
-          </h3>
-        </div>
-
-        <div className="sideBtn">
-        
-            <span>
-              <img className="me-3" style={{maxWidth:"35px"}} src="/icons/posts.svg" />
-            </span>
-            <h3>
-            <NavLink className={menuopen === true? "show":""}>Explore</NavLink>
-          </h3>
-        </div>
-
-         
-        <div className="sideBtn"> 
-          
-            <span>
-              <img className="me-3" src="/icons/people.svg" />
-            </span>
-            <h3>
-            <NavLink className={menuopen === true? "show":""}>People</NavLink>
-          </h3>
-        </div>
-
-        
-      
-        <div className="sideBtn">
-          
-            <span>
-              <img className="me-3" style={{maxWidth:"35px"}} src="/icons/save.svg" />
-            </span>
-            <h3>
-            <NavLink className={menuopen === true? "show":""}>Saved</NavLink>
-          </h3>
-        </div>
-
-
-        <div className="sideBtn">
-          
-            <span>
-              <img className="me-3" style={{maxWidth:"35px"}} src="/icons/posts.svg" />
-            </span>
-            <h3>
-            <button data-bs-toggle="modal" data-bs-target="#myModal" className={menuopen === true? "show buttonsmodals":"buttonsmodals"}>Creat Post</button>
-          </h3>
-        </div>
-        </div>
-
-<div className="Logout">
-
-        <div className="sideBtn">
-          <h3>
-            <span>
-              <img className="me-3" style={{maxWidth:"35px"}} src="/icons/logout.svg" />
-            </span>
-            <NavLink onClick={()=>{logout()}} className={menuopen === true? "show":""}>LogOut</NavLink>
-          </h3>
-        </div>
-</div>
-
-
+    <>
+      <div className="sidebar-toggle">
+        <img
+          onClick={toggleMenu}
+          className="menu-icon"
+          src="/icons/icons8-menu-50.png"
+          alt="menu"
+        />
       </div>
-      <NewPost id={"myModal"}/>
-    </div>
 
-    </div>
+      <div className={`sidebar ${menuOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <img src="/icons/favicon.ico" alt="logo" />
+          <h1>Snapgram</h1>
+          <img
+            onClick={toggleMenu}
+            className="menu-icon close-icon"
+            src="/icons/icons8-menu-50.png"
+            alt="close"
+          />
+        </div>
 
+        <div className="sidebar-links">
+          <NavLink to="/profile" className="sidebar-link" onClick={toggleMenu}>
+            <img src="/icons/profile-placeholder.svg" alt="Profile" />
+            <span>Profile</span>
+          </NavLink>
+
+          <NavLink to="/HomePage" className="sidebar-link" onClick={toggleMenu}>
+            <img src="/icons/home.svg" alt="Home" />
+            <span>Home</span>
+          </NavLink>
+
+          <NavLink to="/explore" className="sidebar-link" onClick={toggleMenu}>
+            <img src="/icons/posts.svg" alt="Explore" />
+            <span>Explore</span>
+          </NavLink>
+
+          <NavLink to="/people" className="sidebar-link" onClick={toggleMenu}>
+            <img src="/icons/people.svg" alt="People" />
+            <span>People</span>
+          </NavLink>
+
+          <NavLink to="/saved" className="sidebar-link" onClick={toggleMenu}>
+            <img src="/icons/save.svg" alt="Saved" />
+            <span>Saved</span>
+          </NavLink>
+
+          <button
+            data-bs-toggle="modal"
+            data-bs-target="#myModal"
+            className="sidebar-link post-button"
+          >
+            <img src="/icons/posts.svg" alt="Create" />
+            <span>Create Post</span>
+          </button>
+        </div>
+
+        <div className="sidebar-footer">
+          <NavLink onClick={() => { logout(); toggleMenu(); }} className="sidebar-link">
+            <img src="/icons/logout.svg" alt="Logout" />
+            <span>Logout</span>
+          </NavLink>
+        </div>
+      </div>
+
+      <NewPost id="myModal" />
+    </>
   );
 };
 

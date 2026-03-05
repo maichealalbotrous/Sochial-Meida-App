@@ -1,137 +1,116 @@
-
-.SideBar{
-    background-color: var(--dark-1);
-    display: inline-flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 20px;
-    align-items: center;
-    text-transform: capitalize;
-    color: var( --light-2);
-    position: relative;
-    width: fit-content;
-  
-}
-.SideBar .SideIcone{
-    display: flex;
-    justify-content: center;
-
-}
-.SideBar .SideIcone .favIcone
-{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+:root {
+  --dark-1: #0e0e0e;
+  --light-2: #cccccc;
+  --primary-600: #10b981;
 }
 
-.SideBar .SideIcone .menuBar
-{
-    display: none;
+.sidebar {
+  background-color: var(--dark-1);
+  color: var(--light-2);
+  width: 250px; 
+  height: 100vh;
+  padding: 20px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-header img {
+  width: 30px;
+  height: 30px;
+}
+
+.sidebar-header h1 {
+  color: white;
+  font-size: 20px;
+  margin: 0 10px;
+  flex-grow: 1;
+}
+
+.sidebar-links,
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--light-2);
+}
+
+.sidebar-link:hover {
+  background-color: var(--primary-600);
+  color: white;
+}
+
+.sidebar-link img {
+  width: 25px;
+}
+
+.post-button {
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+.menu-icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+.close-icon {
+  display: none;
 }
 
 
-.SideBar .UserSetting .sideBtn {
-    
-    margin: 15px;
-    border-radius:10px ;
-    padding: 4px;
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+@media (max-width: 1183px) {
+  .sidebar {
+    transform: translateX(-100%); 
+  }
 
-}
-.SideBar .UserSetting .sideBtn:hover,
-.SideBar .UserSetting .sideBtn:active
-    {
-background-color: var( --primary-600);
-transition: 0.2s;
-transform: scale(1.1);
-box-shadow: 0 0 10px white;
-cursor: pointer;
-}
-.SideBar .Logout {
-    position: absolute;
-    bottom: 20px;
-    width: 80%; 
-}
-.sideBtn h3 a{
-    color:white;
-    text-decoration: none;
-    filter: drop-shadow(0 0 10px white);
- 
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-toggle {
+    display: block; 
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+  }
+
+  .sidebar-header .close-icon {
+    display: block; 
+  }
 }
 
-.buttonsmodals{
-    background-color: black;
-    color: white;
-    border: none;
-
-}
-
-.buttonsmodals:hover,
-.buttonsmodals:active,
-.buttonsmodals:focus{
-    background-color: var(--primary-600);
-}
-
-
-@media (max-width:1183px) {
-  
-    .buttonsmodals.show{
-        display: block;
-        
-    }
-    .SideBar{
-        align-items: flex-start;
-        width: fit-content;
-       transform: translate(-250px);
-        position: fixed;
-        top: 0;
-        z-index: 1000;
-    }
-    .SideBar.clicked{
-       transform: translate(0px);
-        transition: 0.5s;
-        height: 100vh;
-        position: fixed;
-  
-
-    }
-    
- 
-
-   
-
-    .SideBar.clicked .Logout{
-    
-        width: fit-content;
-        display: flex;
-        /* align-items: center;
-        justify-content: center; */
-        margin-left: 20px;
-    }
-
-    .SideBar.clicked .Logout
-    {
-        margin-top: 100px;
-        width: 100%;
-    }
-
-    .SideBar .SideIcone {
-        flex-direction: column;
-    }
-    .SideBar .SideIcone .menuBar {
-      display: block;
-      position: fixed;
-    top: 0;
-    }
-
-  
-.SideBar .SideIcone img{
-   margin-left: 10px;
-}
-    .SideBar .SideIcone h1{
-        display: none;
-    }
+@media (min-width: 1184px) {
+  #root, .main-content { 
+    margin-left: 250px; 
+  }
 }
